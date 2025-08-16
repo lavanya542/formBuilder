@@ -101,7 +101,7 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded',()=>{
-        const formData=JSON.parse(localStorage.getItem('formData'));
+        const formData=JSON.parse(localStorage.getItem('formData'));//parsing the stored data in string format
         console.log(formData);
         const surveyForm=document.querySelector(".surveyForm");
         formData.forEach(field=>{

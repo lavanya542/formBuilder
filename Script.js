@@ -291,7 +291,7 @@ function handleSubmit(){
             })
         }
     })
-    localStorage.setItem('formData',JSON.stringify(formData));
-    window.location.href='index1.html';
+    localStorage.setItem('formData',JSON.stringify(formData));//we can able to store the data as string in key value pair here formData is key and the whole data formdata was converted into string and stored as value whenever we need we can able to access by using localStorage.getItem('formData')
+    window.location.href='index1.html';//it will redirect to index1.html
     console.log(formData);
 }
