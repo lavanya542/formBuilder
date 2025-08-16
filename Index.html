@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Builder</title>
+    <link rel="styleSheet" href="./Style.css">
+</head>
+<body>
+    <div class="builder-container">
+        <div class="tool-box">
+            <h3>Form Elements</h3>
+            <div class="draggable"  draggable="true" data-type="big-heading"  data-type="">Big Heading</div> <!--alt + select and at a time we can able to give all of them class Name-->
+            <div class="draggable" draggable="true" data-type="small-heading">Small Heading</div>
+            <div class="draggable" draggable="true" data-type="para">Paragraph </div>
+            <div class="draggable" draggable="true" data-type="text">Text Input</div>
+            <div class="draggable" draggable="true" data-type="textarea">Text Area</div>
+            <div class="draggable" draggable="true" data-type="select">Select Option</div>
+            <div class="draggable" draggable="true" data-type="radio">Radio group</div>
+            <div class="draggable" draggable="true" data-type="checkbox">Checkbox group</div>
+            <!-- draggable=true make the element draggable so we can drag it to some other place-->
+            <!-- In html we can able to add custom attributes and they will start with data- "data-id=101" this is a custom attribute now we can able to accesss it in java script using "div.dataset.id" in this way we can change them also in javascript-->
+        </div>
+        <div class="form-builder" id="form-builder">
+            <h3>Build Your Form</h3>
+
+        </div>
+    </div>
+    <script src="./Script.js"></script>
+</body>
+</html>

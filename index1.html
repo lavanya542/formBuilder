@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        body {
+            background-color: #f5f5f5;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    
+        .survey-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+        }
+    
+        .form-group {
+    
+            margin-bottom: 20px;
+        }
+    
+        label {
+            font-size: 14px;
+            color: #202124;
+            width: 100%;
+        }
+    
+        .survey-container .bigHead {
+            font-size: 50px;
+        }
+        .survey-container .smallHead {
+            font-size: 30px;
+        }
+        .survey-container .paragraph {
+            font-size: 16px;
+        }
+    
+    
+        .textInputBox,
+        .textAreaBox,
+        .selectBox{
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #202124;
+        }
+    
+        .textAreaBox{
+            min-height: 200px;
+        }
+    
+        .row{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+    
+        button{
+            padding: 12px 20px;
+            background-color: #6200ea;
+    
+            color: white;
+            border-radius: 4px;
+            border: none;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover{
+            background-color: #400099;
+    cursor: pointer;
+        }
+    </style>
+   
+</head>
+<body>
+    <div class="survey-container">
+        <div class="surveyForm"></div>
+        <button>Save</button>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+        const formData=JSON.parse(localStorage.getItem('formData'));
+        console.log(formData);
+        const surveyForm=document.querySelector(".surveyForm");
+        formData.forEach(field=>{
+            const formGroup=document.createElement("div");
+            formGroup.classList='form-group';
+            const label=document.createElement('label');
+            label.textContent=field.value;
+            label.className=field.type;
+            formGroup.appendChild(label);
+            if(field.type=='textInput'){
+                const input=document.createElement('input');
+                input.type='text';
+                input.className='textInputBox';
+                formGroup.appendChild(input);
+            }
+            else if(field.type=='textArea'){
+                const input=document.createElement('textarea');
+                input.type='text';
+                input.className='textAreaBox';
+                formGroup.appendChild(input);
+            }
+            else if(field.type=='select'){
+                const select=document.createElement('select');
+                select.className="selectBox";
+                field.options.forEach(optionValue=>{
+                    const option=document.createElement('option');
+                    option.textContent=optionValue;
+                    select.appendChild(option);
+                    
+                })
+                formGroup.appendChild(select);
+            }
+            else if(field.type=='radio'){
+                field.options.forEach(optionValue=>{
+                    const radioWrapper=document.createElement('div');
+                    radioWrapper.className='row';
+                    const radio=document.createElement('input');
+                    radio.type='radio';
+                    radio.name=field.value;
+                    const radioLabel=document.createElement('label');
+                    radioLabel.textContent=optionValue;
+                    radioWrapper.appendChild(radio);
+                    radioWrapper.appendChild(radioLabel);
+                    formGroup.appendChild(radioWrapper);
+                })
+            }
+            else if(field.type=='checkbox'){
+                field.options.forEach(optionValue=>{
+                    const checkBoxWrapper=document.createElement('div');
+                    checkBoxWrapper.className='row';
+                    const checkBox=document.createElement('input');
+                    checkBox.type='checkbox';
+                    checkBox.name=field.type;
+                    const checkBoxLabel=document.createElement('label');
+                    checkBoxLabel.textContent=optionValue;
+                    checkBoxWrapper.appendChild(checkBox);
+                    checkBoxWrapper.appendChild(checkBoxLabel);
+                    formGroup.appendChild(checkBoxWrapper);
+
+                })
+            }
+            surveyForm.appendChild(formGroup);
+
+        })
+       
+
+    })
+    </script>
+</html>
